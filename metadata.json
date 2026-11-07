@@ -1,0 +1,6 @@
+{
+  "name": "ScanCounter",
+  "description": "Count QR code and barcode scans with multi-sheet inventory, PNG export, undo/redo, and CSV import/export",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
