@@ -10,6 +10,8 @@ nothing anywhere.
 
 > *Opname* is Dutch for a stocktake.
 
+![The sheet drawer, the item list for a sheet, and an item's detail sheet with its barcode and QR code](docs/screenshots/overview.png)
+
 ## Features
 
 - **Scanning** — CameraX preview with ML Kit barcode recognition. A code is
