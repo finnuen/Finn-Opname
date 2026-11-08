@@ -95,6 +95,6 @@ a `FileProvider` cache URI handed to the app you pick.
 ## Versioning
 
 The build carries its version in `app/build.gradle.kts` (`versionCode` and
-`versionName`, currently `1.0.0.8` / `6`); release tags are `v<versionName>`.
+`versionName`, currently `1.0` / `7`); release tags are `v<versionName>`.
 Every release attaches the APK under the unversioned name `FinnOpname.apk`, so a
 new build can be installed over the old file without renaming anything.

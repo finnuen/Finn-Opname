@@ -52,6 +52,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.example.BuildConfig
 import com.example.data.InventorySheet
 import com.example.ui.theme.ControlShape
 import com.example.util.formatTimestamp
@@ -356,6 +357,16 @@ fun DrawerContent(
                     )
                     Switch(checked = isDarkMode, onCheckedChange = { onToggleDarkMode() })
                 }
+
+                // The running version, so a screenshot says which build it came from.
+                Text(
+                    text = "Finn Opname ${BuildConfig.VERSION_NAME}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier
+                        .padding(start = 4.dp, top = 10.dp)
+                        .testTag("drawer_version")
+                )
             }
         }
     }

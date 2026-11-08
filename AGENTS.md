@@ -93,6 +93,12 @@ Do not "simplify" these away; each came from a user report.
   `navigationBarsPadding()`; keep it compact, with no content hidden behind the
   system bars.
 
+**Theme** (`data/SettingsStore.kt`)
+
+- The dark-mode toggle is persisted in SharedPreferences and restored on launch,
+  so it must survive the app being killed. Do not move it back into a plain
+  `MutableStateFlow`.
+
 **Sheets** (`ui/InventoryViewModel.kt`, `ui/DrawerContent.kt`)
 
 - The default sheet, and the one made after the last sheet is removed, is called
@@ -111,8 +117,8 @@ Do not "simplify" these away; each came from a user report.
 ## Version and release
 
 - `app/build.gradle.kts` holds `versionCode` and `versionName`; the version is
-  three digits (`1.0.0.8`). A change bumps PATCH and `versionCode` by one. Keep
-  the running app's displayed version and the file properties in step with it.
+  two digits (`1.0`). A change bumps the minor number (`1.0` → `1.1`) and
+  `versionCode` by one. Keep the running app's displayed version in step with it.
 - Commit to `main` and push only when asked. No feature branches, no pull
   requests.
 - Release: tag `v<versionName>`, title `Finn Opname v<versionName>`, and exactly
@@ -131,6 +137,7 @@ Do not "simplify" these away; each came from a user report.
 | `ExampleUnitTest` | CSV export/import round-trip, per-item date columns |
 | `ExampleRobolectricTest` | Compose smoke test of the main screen |
 | `ScanConfirmationTest` | the three-frame agreement rule |
+| `SettingsStoreTest` | dark mode is remembered across launches |
 
 Run them all before calling a change done; a failing migration test is the one
 that would corrupt a user's data.

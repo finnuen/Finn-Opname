@@ -8,6 +8,7 @@ import com.example.data.DEFAULT_SHEET_NAME
 import com.example.data.InventoryItem
 import com.example.data.InventoryRepository
 import com.example.data.InventorySheet
+import com.example.data.SettingsStore
 import com.example.util.CsvHandler
 import com.example.util.FeedbackUtil
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +26,7 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val repository: InventoryRepository
     private val feedbackUtil: FeedbackUtil = FeedbackUtil(application)
+    private val settings = SettingsStore(application)
 
     val allSheets: StateFlow<List<InventorySheet>>
 
@@ -46,8 +48,8 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
     private val _canRedo = MutableStateFlow(false)
     val canRedo: StateFlow<Boolean> = _canRedo.asStateFlow()
 
-    // Dark Mode
-    private val _isDarkMode = MutableStateFlow(false)
+    // Dark Mode, restored from the last launch.
+    private val _isDarkMode = MutableStateFlow(settings.isDarkMode)
     val isDarkMode: StateFlow<Boolean> = _isDarkMode.asStateFlow()
 
     // UI Dialog States
@@ -111,7 +113,9 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun toggleDarkMode() {
-        _isDarkMode.value = !_isDarkMode.value
+        val enabled = !_isDarkMode.value
+        _isDarkMode.value = enabled
+        settings.isDarkMode = enabled
     }
 
     fun selectSheet(sheet: InventorySheet) {
