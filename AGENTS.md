@@ -118,12 +118,16 @@ Do not "simplify" these away; each came from a user report.
 
 - `app/build.gradle.kts` holds `versionCode` and `versionName`; the version is
   two digits (`1.0`). A change bumps the minor number (`1.0` → `1.1`) and
-  `versionCode` by one. Keep the running app's displayed version in step with it.
+  `versionCode` by one. Keep the running app's displayed version in step with
+  it; the leading digit moves only when the user asks for it.
 - Commit to `main` and push only when asked. No feature branches, no pull
   requests.
-- Release: tag `v<versionName>`, title `Finn Opname v<versionName>`, and exactly
-  one asset — the APK, uploaded as `FinnOpname.apk` (no version in the file name,
-  so it can be downloaded over the old copy). No source zip, no checksums file.
+- Release: tag `<versionName>` (the bare version, no `v`), title
+  `Finn Opname v<versionName>`, and exactly one asset — the APK, uploaded as
+  `FinnOpname.apk` (no version in the file name, so it can be downloaded over the
+  old copy). No source zip, no checksums file. The build itself still lands at
+  `app/build/outputs/apk/debug/app-debug.apk`; naming it for its version is an
+  outstanding debt.
 - The APK is the debug build: there is no upload keystore in the repository and
   the `release` signing config expects one. Sideloading works; Play Store upload
   is not set up.
